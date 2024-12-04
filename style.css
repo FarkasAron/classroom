@@ -1,0 +1,94 @@
+h1 {
+    text-align: center;
+    color: #feffff;
+}
+
+p, li {
+    color:white;
+}
+
+body {
+    background-color: rgb(90, 90, 90);
+}
+
+form {
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+    margin: auto;
+}
+
+#chooser {
+    margin: auto;
+    text-align: center;
+}
+
+#kulso {
+    width: 60%;
+    margin: auto;
+    border: 3px solid white;
+    border-radius: 15px;
+    text-align: center;
+}
+
+button {
+    background-color: rgb(90,90,90);
+    color: white;
+    font-size: larger;
+    border: 2px solid white;
+    width: 15%;
+    height: 5vh;
+    overflow: hidden;
+    border-radius: 100px;
+}
+
+button:hover {
+    background-color: rgb(60, 60, 60);
+    color: #feffff;
+}
+
+.classes-11 {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(70, 70, 70);
+    border-radius: 100px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.all-classes {
+    width: 80%;
+    margin: auto;
+    margin-top: 1%;
+}
+
+table {
+    border-color: white;
+    color: black;
+}
+
+h3, h2 {
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: beige;
+    text-align: center;
+}
+
+td {
+    background-color: white;
+    text-align: center;
+}
