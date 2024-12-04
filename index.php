@@ -10,7 +10,8 @@ createGrades();
 
 function createClasses()
 {
-    if (!isset($_SESSION['classes'])) {
+    if (!isset($_SESSION['classes']) || isset($_POST['regenerate_classes'])) { // Új osztályok generálása, ha a gombot megnyomják
+        $_SESSION['classes'] = []; // Az osztályok törlése
         foreach (DATA['classes'] as $class) {
             $_SESSION['classes'][$class] = [];
             $numberOfStudents = rand(10, 15);
@@ -67,6 +68,9 @@ function showChooser()
                 <button name='class' value='12b'>12. B</button>
                 <button name='class' value='12c'>12. C</button>
             </form>
+            <form method='post' action=''>
+                <button name='regenerate_classes' value='true'>Újra generálás</button>
+            </form>
         </div>
     </div>";
 }
@@ -97,7 +101,7 @@ function showSelectedClass()
         }
     }
 
-    // Exportálási logika meghívása
+    // Csak akkor hívjuk meg az exportálás funkciót, ha a letöltés gombra kattintottak
     if (isset($_POST['export_class'])) {
         $classToExport = $_POST['export_class'];
         exportClassToCSV($classToExport);
@@ -152,8 +156,7 @@ function showClassTable($class)
     echo "</div>";
 }
 
-#----------------------ADAT MENTÉS--------------------------
-
+//----------------------ADAT MENTÉS--------------------------
 
 function exportClassToCSV($class)
 {
@@ -203,13 +206,4 @@ function exportClassToCSV($class)
     echo "<p>A $class osztály adatai sikeresen elmentve ide: $filePath</p>";
 }
 
-// A showSelectedClass függvény végére adható hozzá:
-if (isset($_POST['class']) && $_POST['class'] !== 'all') {
-    exportClassToCSV($_POST['class']);
-}
-
-
-
 ?>
-
-
