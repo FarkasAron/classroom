@@ -165,13 +165,13 @@ function showClassTable($class)
 
 function exportClassToCSV($class)
 {
-    // 'export' mappa ellenőrzése és létrehozása
+    // export mappa ellenőrzése és létrehozása
     $exportDir = __DIR__ . '/export';
     if (!file_exists($exportDir) || !is_dir($exportDir)) {
         mkdir($exportDir, 0777, true);
     }
 
-    // Időbélyeg hozzáadása a fájl nevéhez
+    // Timestamp hozzáadás
     $timestamp = date('Y-m-d_His');
     $filename = "$class-$timestamp.csv";
     $filePath = $exportDir . '/' . $filename;
@@ -179,7 +179,7 @@ function exportClassToCSV($class)
     $file = fopen($filePath, 'w');
 
 
-    // Fejléc hozzáadása a fájlhoz
+    // Fejléc fájlba
     $header = ['Diák neve'];
     foreach (DATA['subjects'] as $subject) {
         $header[] = $subject;
@@ -329,7 +329,7 @@ function displayAverages($averages, $title)
 
 function displayRankings($rankings)
 {
-    echo "<h2>Student Rankings</h2>";
+    echo "<h2>Tanuló ranglista</h2>";
     foreach ($rankings as $class => $students) {
         echo "<h3>Class: $class</h3><table border='1'><tr><th>Helyezés</th><th>Tanuló</th><th>Átlag</th></tr>";
         foreach ($students as $index => $student) {
@@ -341,7 +341,7 @@ function displayRankings($rankings)
 
 function displayBestAndWorstClasses($results)
 {
-    echo "<h2>Legjobb és legrosszabb osztályok:</h2>";
+    echo "<h2>Legjobb és legrosszabb osztályok (Átlag alapján):</h2>";
     echo "<p>Legjobb osztály: {$results['best']}</p>";
     echo "<p>Legrosszabb osztály: {$results['worst']}</p>";
 }
