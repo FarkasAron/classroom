@@ -152,8 +152,8 @@ function showClassTable($class)
             echo "</tr>";
         }
         
-        echo "</tbody>";
-        echo "</table>";
+        echo "</tbody>
+            </table>";
     } else {
         echo "<p>Nincsenek diákok az osztályban.</p>";
     }
@@ -176,13 +176,8 @@ function exportClassToCSV($class)
     $filename = "$class-$timestamp.csv";
     $filePath = $exportDir . '/' . $filename;
 
-    // CSV fájl megnyitása írásra
     $file = fopen($filePath, 'w');
 
-    if (!$file) {
-        echo "<p>Hiba történt a fájl megnyitásakor.</p>";
-        return;
-    }
 
     // Fejléc hozzáadása a fájlhoz
     $header = ['Diák neve'];
@@ -216,11 +211,11 @@ if (isset($_POST['action'])) {
     switch ($_POST['action']) {
         case 'classSubjectAverages':
             $averages = calculateClassSubjectAverages();
-            displayAverages($averages, 'Class Subject Averages');
+            displayAverages($averages, 'Osztály tantárgy átlagok');
             break;
         case 'schoolSubjectAverages':
             $averages = calculateSchoolSubjectAverages();
-            displayAverages($averages, 'School Subject Averages');
+            displayAverages($averages, 'Iskola tantárgy átlagok');
             break;
         case 'rankings':
             $rankings = calculateRankings();
@@ -319,7 +314,7 @@ function calculateBestAndWorstClasses()
 
 function displayAverages($averages, $title)
 {
-    echo "<h2>$title</h2><table border='1'><tr><th>Class/Subject</th><th>Average</th></tr>";
+    echo "<h2>$title</h2><table border='1'><tr><th>Osztály/Tantárgy</th><th>Átlag</th></tr>";
     foreach ($averages as $key => $values) {
         if (is_array($values)) {
             foreach ($values as $subject => $average) {
@@ -336,7 +331,7 @@ function displayRankings($rankings)
 {
     echo "<h2>Student Rankings</h2>";
     foreach ($rankings as $class => $students) {
-        echo "<h3>Class: $class</h3><table border='1'><tr><th>Rank</th><th>Student</th><th>Average</th></tr>";
+        echo "<h3>Class: $class</h3><table border='1'><tr><th>Helyezés</th><th>Tanuló</th><th>Átlag</th></tr>";
         foreach ($students as $index => $student) {
             echo "<tr><td>" . ($index + 1) . "</td><td>{$student['name']}</td><td>" . number_format($student['average'], 2) . "</td></tr>";
         }
